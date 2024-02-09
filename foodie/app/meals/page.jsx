@@ -1,23 +1,23 @@
 import Link from "next/link";
+import styles from "./page.module.css";
 
-function page() {
+function MealsPage() {
   return (
-    <main>
-      <h1>The Meals Page 🍜</h1>
-      <p>
-        <Link href="/meals/share">Meal Share page</Link>
-      </p>
-      <p>
-        <Link href="/community">Community page</Link>
-      </p>
-      <p>
-        <Link href="/meals/some-meal-1">Some meal 1</Link>
-      </p>
-      <p>
-        <Link href="/meals/some-meal-2">Some meal 2</Link>
-      </p>
-    </main>
+    <>
+      <header className={styles.header}>
+        <h1>
+          Delicious meals, created{" "}
+          <span className={styles.highlight}>by you</span>
+        </h1>
+        <p>Cook your favorite recipe</p>
+        <p className={styles.cta}>
+          <Link href={styles.cta}>Share your favorite recipe</Link>
+        </p>
+      </header>
+
+      <main className={styles.main}></main>
+    </>
   );
 }
 
-export default page;
+export default MealsPage;
