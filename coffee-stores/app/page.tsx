@@ -1,10 +1,23 @@
 import Banner from "@/components/banner.client";
+import Card from "@/components/card.server";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Home() {
+  const coffeeStoreId = "Wassup...";
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <Banner />
-    </main>
+    <div className="mb-56">
+      <main className="mx-auto mt-10 max-w-6xl px-4">
+        <Banner />
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-2 lg:grid-cols-3 lg:gap-6">
+          <Card
+            name="Latte"
+            imgURL="/static/hero-image.png"
+            href={`/coffee-store/${coffeeStoreId}`}
+          />
+        </div>
+      </main>
+    </div>
   );
 }
