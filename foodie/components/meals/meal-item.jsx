@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./meal-item.module.css";
 
-function MealItem() {
+function MealItem({ title, slug, image, summary, creator }) {
   return (
     <article className={styles.meal}>
       <header>
