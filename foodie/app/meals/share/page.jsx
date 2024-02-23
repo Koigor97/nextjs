@@ -1,6 +1,6 @@
-import Link from "next/link";
 import styles from "./page.module.css";
 import ImagePicker from "@/components/meals/image-picker";
+import { handleMealShareForm } from "@/lib/actions";
 
 function MealSharePage() {
   return (
@@ -12,7 +12,7 @@ function MealSharePage() {
         <p>Or any other meal you feel needs sharing!</p>
       </header>
       <main className={styles.main}>
-        <form className={styles.form}>
+        <form className={styles.form} action={handleMealShareForm}>
           <div className={styles.row}>
             <p>
               <label htmlFor="name">Your name</label>
@@ -40,7 +40,7 @@ function MealSharePage() {
               required
             ></textarea>
           </p>
-          <ImagePicker />
+          <ImagePicker label={"Your Image"} name={"image"} />
           <p className={styles.actions}>
             <button type="submit">Share Meal</button>
           </p>

@@ -19,7 +19,7 @@ function MealsPage() {
         </h1>
         <p>Cook your favorite recipe</p>
         <p className={styles.cta}>
-          <Link href={styles.cta}>Share your favorite recipe</Link>
+          <Link href={"/meals/share"}>Share your favorite recipe</Link>
         </p>
       </header>
 
