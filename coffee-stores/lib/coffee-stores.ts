@@ -1,4 +1,4 @@
-import { MapboxType } from "./../../types/index";
+import { MapboxType } from "../types/index";
 
 function tranformCoffeeData(result: MapboxType) {
   return {
