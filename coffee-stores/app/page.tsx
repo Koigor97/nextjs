@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 import { fetchCoffeeStores } from "@/lib/coffee-stores";
-import { CoffeeStoreType } from "../../types";
+import { CoffeeStoreType } from "../types";
 
 async function getData() {
   return await fetchCoffeeStores();
