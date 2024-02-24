@@ -15,7 +15,10 @@ function ImagePicker({ label, name }) {
   function handleImageChange(e) {
     // e.preventDefault();
     const file = e.target.files[0];
-    if (!file) return;
+    if (!file) {
+      setPickedImg(null);
+      return;
+    }
 
     const fileReader = new FileReader();
     fileReader.onload = () => {
@@ -43,6 +46,7 @@ function ImagePicker({ label, name }) {
           accept="image/png, image/jpeg, image/webp"
           ref={imageInput}
           onChange={handleImageChange}
+          required
         />
         <b
           className={styles.button}
