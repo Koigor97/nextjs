@@ -1,5 +1,6 @@
 "use server";
 
+import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { saveMeal } from "./meals";
 
@@ -23,7 +24,7 @@ export async function handleMealShareForm(prevState, formData) {
     isInvalidData(meal.instructions) ||
     isInvalidData(meal.creator) ||
     isInvalidData(meal.creator_email) ||
-    !meal.creator_email.include("@") ||
+    !meal.creator_email.includes("@") ||
     !meal.image ||
     meal.image.size === 0
   ) {
@@ -34,5 +35,6 @@ export async function handleMealShareForm(prevState, formData) {
 
   // console.log(meal);
   await saveMeal(meal);
+  revalidatePath("/meals");
   redirect("/meals", "replace");
 }
