@@ -23,7 +23,7 @@ function MainHeader() {
               <NavLink href={"/meals"}>Browse Meals</NavLink>
             </li>
             <li>
-              <NavLink href={"/community"}>Foodie's Community</NavLink>
+              <NavLink href={"/community"}>Foodie&apos;s Community</NavLink>
             </li>
           </ul>
         </nav>

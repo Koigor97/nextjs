@@ -48,13 +48,13 @@ function ImagePicker({ label, name }) {
           onChange={handleImageChange}
           required
         />
-        <b
+        <button
           className={styles.button}
           type="button"
           onClick={handlePickImageClick}
         >
           Pick an Image
-        </b>
+        </button>
       </div>
     </div>
   );
