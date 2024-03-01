@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 
 import { getAllEvents } from "../../dummy";
@@ -16,6 +17,13 @@ function EventsPage() {
 
   return (
     <>
+      <Head>
+        <title>All Events</title>
+        <meta
+          name="description"
+          content="See all available events and filter events by date"
+        />
+      </Head>
       <EventSearch handleFindEvent={handleFindEvent} />
       <EventList events={events} />
     </>
