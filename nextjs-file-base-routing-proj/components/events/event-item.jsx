@@ -3,6 +3,8 @@ import styles from "./event-item.module.css";
 
 import Button from "../shared/button";
 
+import Image from "next/image";
+
 function EventItem({ event }) {
   const humanReadableDate = new Date(event.date).toLocaleDateString("en-SA", {
     day: "numeric",
@@ -13,7 +15,12 @@ function EventItem({ event }) {
 
   return (
     <li className={styles.item}>
-      <img src={`/${event.image}`} alt={`Photo of ${event.title} event`} />
+      <Image
+        src={`/${event.image}`}
+        alt={`Photo of ${event.title} event`}
+        width={340}
+        height={160}
+      />
       <div className={styles.content}>
         <h2>{event.title}</h2>
         <div className={styles.date}>
