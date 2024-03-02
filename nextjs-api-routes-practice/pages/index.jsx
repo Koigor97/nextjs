@@ -8,6 +8,18 @@ function HomePage() {
     e.preventDefault();
     const enteredEmail = emailInput.current.value;
     const enteredFeedback = feedBackInput.current.value;
+    const reqBody = { email: enteredEmail, text: enteredFeedback };
+
+    // connecting the frontend to the backend
+    fetch("/api/feedback", {
+      method: "POST",
+      body: JSON.stringify(reqBody),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data));
   }
 
   return (
