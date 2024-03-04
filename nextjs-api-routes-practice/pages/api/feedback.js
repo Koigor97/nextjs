@@ -1,14 +1,13 @@
 import fs from "fs";
 import path from "path";
-
 import { data } from "../../data/dummyData";
 
 // helper functions
-function getFilePath() {
-  return path.join(process.cwd(), "data", "feedback.json");
+export function getFilePath(data = "data", jsonFile = "feedback.json") {
+  return path.join(process.cwd(), data, jsonFile);
 }
 
-function getDataFromFile(filePath) {
+export function getDataFromFile(filePath) {
   const fileData = fs.readFileSync(filePath);
   const data = JSON.parse(fileData);
   return data;
