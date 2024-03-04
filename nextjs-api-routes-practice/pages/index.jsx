@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import Link from "next/link";
 
 function HomePage() {
   const emailInput = useRef();
@@ -50,15 +51,7 @@ function HomePage() {
 
       <hr />
 
-      <button onClick={handleLoadFeedbacks}>Load Feedback</button>
-
-      <ul>
-        {feebackData.map((data) => (
-          <li
-            key={data.id}
-          >{`Title: ${data.title}, Description: ${data.description}, Assignee: ${data.assignee}`}</li>
-        ))}
-      </ul>
+      <Link href={"/feedback/"}>Load Feedback</Link>
     </div>
   );
 }
