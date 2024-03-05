@@ -3,8 +3,13 @@ import {
   getFilePath,
   writeDataToFile,
 } from "../../../utils/helpers";
+import { MongoClient } from "mongodb";
 
-function handler(req, res) {
+async function handler(req, res) {
+  const client = await MongoClient.connect(
+    "mongodb+srv://koigorfogbawa:8QIlbTObppSlCqhm@cluster0.bqbbl9p.mongodb.net/events?retryWrites=true&w=majority&appName=Cluster0"
+  );
+
   if (req.method === "POST") {
     console.log(req.body);
     const { email } = req.body;
@@ -14,6 +19,14 @@ function handler(req, res) {
       res.status(422).json({ message: "Invalid email address" });
       return;
     }
+
+    const db = client.db();
+    const result = await db
+      .collection("newsletter")
+      .insertOne({ emailAddress: email });
+
+    console.log(result);
+    client.close();
 
     const newsLetterData = {
       email,
@@ -26,7 +39,7 @@ function handler(req, res) {
 
     res.status(201).json({
       status: "Success",
-      data: newsLetterData,
+      message: "Signed Up",
     });
   }
 }
