@@ -51,11 +51,6 @@ function NewsletterRegistration() {
           />
           <button>Register</button>
         </div>
-        {isError === false ? (
-          <p>You are successfully registered</p>
-        ) : (
-          <p>Enter a valid email</p>
-        )}
       </form>
     </section>
   );
