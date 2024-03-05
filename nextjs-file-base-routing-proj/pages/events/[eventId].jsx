@@ -7,10 +7,12 @@ import EventSummary from "../../components/event-detail/event-summary";
 import EventLogistics from "../../components/event-detail/event-logistics";
 import EventContent from "../../components/event-detail/event-content";
 import ErrorAlert from "../../components/error-alert/error-alert";
+import Comments from "../../components/input/comments";
 
 function EventDetailPage() {
   const router = useRouter();
   const { eventId } = router.query;
+  console.log(eventId);
   const { title, description, location, date, image } = getEventById(eventId);
 
   if (!eventId) {
@@ -37,6 +39,7 @@ function EventDetailPage() {
       <EventContent>
         <p>{description}</p>
       </EventContent>
+      <Comments eventId={eventId} />
     </>
   );
 }
