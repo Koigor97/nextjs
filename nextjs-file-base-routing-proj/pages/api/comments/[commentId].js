@@ -4,9 +4,15 @@ import {
   writeDataToFile,
 } from "../../../utils/helpers";
 
-export default function commentHandler(req, res) {
+import { MongoClient } from "mongodb";
+
+export default async function commentHandler(req, res) {
   const eventId = req.query.commentId;
-  console.log(eventId);
+  // console.log(eventId);
+
+  const client = await MongoClient.connect(
+    "mongodb+srv://koigorfogbawa:8QIlbTObppSlCqhm@cluster0.bqbbl9p.mongodb.net/events?retryWrites=true&w=majority&appName=Cluster0"
+  );
 
   if (req.method === "POST") {
     const { email, name, text } = req.body;
@@ -25,28 +31,35 @@ export default function commentHandler(req, res) {
     }
 
     const newComment = {
-      id: new Date().toISOString(),
+      eventId,
       email,
       name,
       text,
     };
-    console.log(newComment);
+    // console.log(newComment);
+    const db = client.db();
+    const result = await db.collection("comments").insertOne(newComment);
+    console.log(result);
 
     const filePath = getFilePath("eventComments.json");
-    console.log(filePath);
+    // console.log(filePath);
     const fileData = getFileData(filePath);
-    console.log(fileData);
+    // console.log(fileData);
     fileData.push(newComment);
     writeDataToFile(filePath, fileData);
 
-    res.status(201).json({ status: "Success", data: newComment });
+    newComment.id = result.insertedId;
+
+    res.status(201).json({ status: "Success", comment: newComment });
   }
 
   if (req.method === "GET") {
-    const filePath = getFilePath("eventComments.json");
-    console.log(filePath);
-    const data = getFileData(filePath);
-    console.log(data);
+    const db = client.db();
+    const data = await db
+      .collection("comments")
+      .find()
+      .sort({ _id: -1 })
+      .toArray();
 
     res.status(200).json({
       status: "Success",
@@ -54,4 +67,6 @@ export default function commentHandler(req, res) {
       length: data.length,
     });
   }
+
+  client.close();
 }
