@@ -11,6 +11,6 @@ export function isEmailValid(data) {
       data.includes("@")
     ) {
       return true;
-    } else return false;
+    }
   }
 }
