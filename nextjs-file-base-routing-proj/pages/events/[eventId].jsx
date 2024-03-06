@@ -12,7 +12,7 @@ import Comments from "../../components/input/comments";
 function EventDetailPage() {
   const router = useRouter();
   const { eventId } = router.query;
-  console.log(eventId);
+  // console.log(eventId);
   const { title, description, location, date, image } = getEventById(eventId);
 
   if (!eventId) {
