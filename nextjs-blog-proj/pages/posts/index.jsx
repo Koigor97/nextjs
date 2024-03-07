@@ -1,7 +1,11 @@
+import AllPosts from "../../components/posts/all-posts";
+
+import { DUMMY_POSTS } from "../../data/dummyData";
+
 function AllPostPage() {
   return (
     <div>
-      <h2>All Post Page</h2>
+      <AllPosts posts={DUMMY_POSTS} />
     </div>
   );
 }
